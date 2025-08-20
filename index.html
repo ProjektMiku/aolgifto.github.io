@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎉</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="background-container">
+        <div class="gradient-bg"></div>
+        <div class="floating-elements">
+            <div class="float-element float-1"></div>
+            <div class="float-element float-2"></div>
+            <div class="float-element float-3"></div>
+        </div>
+    </div>
+
+    <!-- Music Control -->
+    <button class="music-control" id="musicControl">
+        <span class="music-icon">🎵</span>
+        <span class="music-text">Music</span>
+    </button>
+
+    <!-- Stray Kids Stickers -->
+    <div class="stickers-container">
+        <img src="https://pplx-res.cloudinary.com/image/upload/v1755708597/pplx_project_search_images/febde23a17c8271d4c373cadd5121d606f58a185.png" class="sticker sticker-1" alt="Cute Stray Kids Sticker">
+        <img src="https://pplx-res.cloudinary.com/image/upload/v1755713056/pplx_project_search_images/a6f3434367abb7232dd612275e8c9f982a50124d.png" class="sticker sticker-2" alt="Chibi Stray Kids">
+        <img src="https://pplx-res.cloudinary.com/image/upload/v1755713056/pplx_project_search_images/f436e828e649045128aeb7146ef97c8e03320205.png" class="sticker sticker-3" alt="Stray Kids Characters">
+    </div>
+
+    <!-- Homepage -->
+    <div class="page active" id="homepage">
+        <div class="glass-container main-card">
+            <div class="card-content">
+                <h1 class="main-title">Happy Birthday! 🎉</h1>
+                <p class="welcome-message">Wishing you the most amazing day filled with love, joy, and all your favorite things!</p>
+                <p class="custom-message">Its your birthday! I´m so glad that I met you, you make me happy without even trying, you are such an amazing person and make the days brighter by just existing. I hope you have an amazing day with your family and hope that I will also get some cake hehe. I actually wanted to buy you something from an american store and just send it to your place, well next year hehe. Well no but you are really awesome and such an awesome person, I know that school is a lot right now but I also know you and that you will manage it because you are so damn strong. Don´t change yourself, because you are already awesome ✨ PS: Please ignore the music button, I could for the love of my life not figure out why it doesn´t work</p>
+                
+                <button class="glass-button" id="viewPoemBtn">
+                    <span class="button-text">A little poem for you</span>
+                    <span class="button-arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Poem Page -->
+    <div class="page" id="poempage">
+        <div class="glass-container poem-card">
+            <div class="card-content">
+                <h2 class="poem-title">(maybe a dumb) poem for you</h2>
+                <div class="poem-content">
+                    <p>Some people are unforgettable<br>
+                    not because they try,<br>
+                    but because the world feels different<br>
+                    when they are near.</p>
+                    
+                    <p>You're one of those rare few.<br>
+                    Your smile has a way of making my days lighter,<br>
+                    your presence makes moments linger,<br>
+                    as if even ordinary hours<br>
+                    want to stay and shine with you.</p>
+                    
+                    
+                </div>
+                
+                <button class="glass-button back-button" id="backHomeBtn">
+                    <span class="button-arrow">←</span>
+                    <span class="button-text">Back to Message</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- YouTube IFrame Player (hidden) -->
+    <div id="youtube-player" style="display: none;"></div>
+    
+    <!-- YouTube IFrame API -->
+    <script>
+      // Global variable to track if player is ready
+      window.youTubePlayerReady = false;
+      
+      // Load the IFrame Player API code asynchronously
+      function loadYouTubeAPI() {
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      }
+      
+      // Load the API when the page loads
+      window.addEventListener('load', loadYouTubeAPI);
+
+      // This function is called by the YouTube API when it's ready
+      function onYouTubeIframeAPIReady() {
+        console.log('YouTube API is ready');
+        
+        // Create the player
+        window.youTubePlayer = new YT.Player('youtube-player', {
+          height: '0',
+          width: '0',
+          videoId: 'yLYA4J87XQ4',
+          playerVars: {
+            'autoplay': 0,
+            'controls': 0,
+            'disablekb': 1,
+            'fs': 0,
+            'loop': 1,
+            'modestbranding': 1,
+            'playsinline': 1,
+            'rel': 0,
+            'enablejsapi': 1,
+            'origin': window.location.origin
+          },
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // The API will call this function when the video player is ready
+      function onPlayerReady(event) {
+        console.log('YouTube player is ready');
+        window.youTubePlayerReady = true;
+        // Mute the player by default (some browsers block autoplay with sound)
+        event.target.mute();
+      }
+
+      // The API calls this function when the player's state changes
+      function onPlayerStateChange(event) {
+        // Update UI based on player state if needed
+        console.log('Player state changed:', event.data);
+      }
+    </script>
+
+    <script src="app.js"></script>
+</body>
+</html>
